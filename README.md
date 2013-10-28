@@ -9,6 +9,7 @@ https://github.com/stanlemon/bernard-app
 
 Add to your config:
 
+```yml
 cordoval_bernard:
     driver: dbal
     serializer: simple
@@ -23,3 +24,4 @@ cordoval_bernard:
 #        key:
 #        secret:
 #        region:
+```
