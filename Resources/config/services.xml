@@ -1,20 +1,93 @@
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <!--
+<?xml version="1.0"?>
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
-        <parameter key="cordoval_bernard.example.class">Cordoval\BernardBundle\Example</parameter>
+        <parameter key="bernard.cordoval.command_message_handler.class">Cordoval\BernardBundle\Message\CommandMessageHandler</parameter>
+        <parameter key="bernard.cordoval.echo_message_handler.class">Cordoval\BernardBundle\Message\EchoMessageHandler</parameter>
+        <parameter key="bernard.consumer.class">Bernard\Consumer</parameter>
+        <parameter key="bernard.producer.class">Bernard\Producer</parameter>
+        <parameter key="bernard.queue_factory.class">Bernard\QueueFactory\PersistentFactory</parameter>
+        <parameter key="bernard.router.class">Bernard\Symfony\ContainerAwareRouter</parameter>
+        <parameter key="bernard.ironmq.class">IronMQ</parameter>
+        <parameter key="bernard.ironmq_driver.class">Bernard\Driver\IronMqDriver</parameter>
+        <parameter key="bernard.sqs.class">Aws\Sqs\SqsClient</parameter>
+        <parameter key="bernard.sqs_driver.class">Bernard\Driver\SqsDriver</parameter>
+        <parameter key="bernard.redis.class">Redis</parameter>
+        <parameter key="bernard.redis_driver.class">Bernard\Driver\PhpRedisDriver</parameter>
+        <parameter key="bernard.predis.class">Predis\Client</parameter>
+        <parameter key="bernard.predis_driver.class">Bernard\Driver\PredisDriver</parameter>
+        <parameter key="bernard.doctrine_driver.class">Bernard\Driver\DoctrineDriver</parameter>
+        <parameter key="bernard.consumer_middleware.class">Bernard\Middleware\MiddlewareBuilder</parameter>
+        <parameter key="bernard.consumer_middleware.error_log.class">Bernard\Middleware\ErrorLogFactory</parameter>
+        <parameter key="bernard.consumer_middleware.failures.class">Bernard\Middleware\FailuresFactory</parameter>
+        <parameter key="bernard.consumer_middleware.logger.class">Bernard\Middleware\LoggerFactory</parameter>
+        <parameter key="bernard.producer_middleware.class">Bernard\Middleware\MiddlewareBuilder</parameter>
+        <parameter key="bernard.simple_serializer.class">Bernard\Serializer\SimpleSerializer</parameter>
+        <parameter key="bernard.symfony_serializer.class">Bernard\Serializer\SymfonySerializer</parameter>
+        <parameter key="bernard.symfony_serializer_serializer.class">Symfony\Component\Serializer\Serializer</parameter>
+        <parameter key="bernard.symfony_serializer.default_message.normalizer.class">Bernard\Symfony\DefaultMessageNormalizer</parameter>
+        <parameter key="bernard.symfony_serializer.envelope.normalizer.class">Bernard\Symfony\EnvelopeNormalizer</parameter>
+        <parameter key="bernard.symfony_serializer.encoder.json.class">Symfony\Component\Serializer\Encoder\JsonEncoder</parameter>
     </parameters>
-
     <services>
-        <service id="cordoval_bernard.example" class="%cordoval_bernard.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="bernard.cordoval.command_message_handler" class="%bernard.cordoval.command_message_handler.class%">
+            <tag name="bernard.receiver"/>
         </service>
+        <service id="bernard.cordoval.echo_message_handler" class="%bernard.cordoval.echo_message_handler.class%">
+            <tag name="bernard.receiver"/>
+        </service>
+        <service id="bernard.consumer" class="%bernard.consumer.class%">
+            <argument type="service" id="bernard.router"/>
+            <argument type="service" id="bernard.consumer_middleware"/>
+        </service>
+        <service id="bernard.producer" class="%bernard.producer.class%">
+            <argument type="service" id="bernard.queue_factory"/>
+            <argument type="service" id="bernard.producer_middleware"/>
+        </service>
+        <service id="bernard.queue_factory" class="%bernard.queue_factory.class%">
+            <argument type="service" id="bernard.driver"/>
+            <argument type="service" id="bernard.serializer"/>
+        </service>
+        <service id="bernard.router" class="%bernard.router.class%">
+            <argument type="service" id="service_container"/>
+        </service>
+        <service id="bernard.ironmq" class="%bernard.ironmq.class%"/>
+        <service id="bernard.ironmq_driver" class="%bernard.ironmq_driver.class%">
+            <argument type="service" id="bernard.ironmq"/>
+        </service>
+        <service id="bernard.sqs" class="%bernard.sqs.class%"/>
+        <service id="bernard.sqs_driver" class="%bernard.sqs_driver.class%">
+            <argument type="service" id="bernard.sqs"/>
+        </service>
+        <service id="bernard.redis" class="%bernard.redis.class%"/>
+        <service id="bernard.redis_driver" class="%bernard.redis_driver.class%">
+            <argument type="service" id="bernard.redis"/>
+        </service>
+        <service id="bernard.predis" class="%bernard.predis.class%"/>
+        <service id="bernard.predis_driver" class="%bernard.predis_driver.class%">
+            <argument type="service" id="bernard.predis"/>
+        </service>
+        <service id="bernard.doctrine_driver" class="%bernard.doctrine_driver.class%">
+            <argument type="service" id="doctrine.dbal.default_connection"/>
+        </service>
+        <service id="bernard.consumer_middleware" class="%bernard.consumer_middleware.class%"/>
+        <service id="bernard.consumer_middleware.error_log" class="%bernard.consumer_middleware.error_log.class%"/>
+        <service id="bernard.consumer_middleware.failures" class="%bernard.consumer_middleware.failures.class%">
+            <argument type="service" id="bernard.queue_factory"/>
+        </service>
+        <service id="bernard.consumer_middleware.logger" class="%bernard.consumer_middleware.logger.class%">
+            <argument type="service" id="logger"/>
+        </service>
+        <service id="bernard.producer_middleware" class="%bernard.producer_middleware.class%"/>
+        <service id="bernard.simple_serializer" class="%bernard.simple_serializer.class%"/>
+        <service id="bernard.symfony_serializer" class="%bernard.symfony_serializer.class%">
+            <argument type="service" id="bernard.symfony_serializer_serializer"/>
+        </service>
+        <service id="bernard.symfony_serializer_serializer" class="%bernard.symfony_serializer_serializer.class%">
+            <argument type="service"/>
+            <argument type="service"/>
+        </service>
+        <service id="bernard.symfony_serializer.default_message.normalizer" class="%bernard.symfony_serializer.default_message.normalizer.class%"/>
+        <service id="bernard.symfony_serializer.envelope.normalizer" class="%bernard.symfony_serializer.envelope.normalizer.class%"/>
+        <service id="bernard.symfony_serializer.encoder.json" class="%bernard.symfony_serializer.encoder.json.class%"/>
     </services>
-    -->
 </container>

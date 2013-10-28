@@ -9,6 +9,8 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  * This is the class that validates and merges configuration from your app/config files
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html#cookbook-bundles-extension-config-class}
+ *
+ * Inspired from https://github.com/stanlemon/bernard-app
  */
 class Configuration implements ConfigurationInterface
 {
@@ -19,10 +21,42 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('cordoval_bernard');
-
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+                ->enumNode('driver')
+                    ->values(array('dbal', 'ironmq', 'sqs', 'redis', 'predis'))
+                    ->defaultValue('dbal')
+                ->end()
+                ->scalarNode('serializer')->defaultValue('symfony')->end()
+                ->scalarNode('dbal')->defaultValue('default')->end()
+                ->arrayNode('ironmq')
+                    ->children()
+                        ->scalarNode('token')->end()
+                        ->scalarNode('project_id')->end()
+                    ->end()
+                ->end()
+                ->arrayNode('sqs')
+                    ->children()
+                        ->scalarNode('key')->end()
+                        ->scalarNode('secret')->end()
+                        ->scalarNode('region')->defaultValue('us-east-1')->end()
+                    ->end()
+                ->end()
+                ->arrayNode('redis')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('host')->defaultValue('localhost')->end()
+                        ->scalarNode('port')->defaultValue(6379)->end()
+                    ->end()
+                ->end()
+                ->arrayNode('predis')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('dsn')->defaultValue('tcp://localhost')->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
 
         return $treeBuilder;
     }
