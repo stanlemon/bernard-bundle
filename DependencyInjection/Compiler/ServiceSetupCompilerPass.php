@@ -18,7 +18,7 @@ class ServiceSetupCompilerPass implements CompilerPassInterface
         $connection = current($arguments);
 
         if (!$connection instanceof Reference || !$container->hasDefinition((string) $connection)) {
-            throw new \RuntimeException(sprintf("DBAL connection %s does not exist", $config['dbal']));
+            throw new \RuntimeException(sprintf("DBAL connection %s does not exist", (string) $connection));
         }
     }
 }
