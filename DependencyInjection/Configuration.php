@@ -24,7 +24,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->enumNode('driver')
-                    ->values(array('dbal', 'ironmq', 'sqs', 'redis', 'predis'))
+                    ->values(['dbal', 'ironmq', 'sqs', 'redis', 'predis'])
                     ->defaultValue('dbal')
                 ->end()
                 ->scalarNode('serializer')->defaultValue('symfony')->end()

@@ -5,19 +5,10 @@ namespace Cordoval\BernardBundle\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-
 use Symfony\Component\Console\Output\OutputInterface;
-
-use Bernard\Consumer;
 use Bernard\Message;
 use Bernard\Message\DefaultMessage;
 use Bernard\Middleware;
-use Bernard\Producer;
-use Bernard\QueueFactory\PersistentFactory;
-use Bernard\Router\SimpleRouter;
-use Bernard\Serializer\SimpleSerializer;
-use Bernard\Driver\DoctrineDriver;
-use Doctrine\DBAL\DriverManager;
 
 /**
  * Inspired from https://github.com/stanlemon/bernard-app

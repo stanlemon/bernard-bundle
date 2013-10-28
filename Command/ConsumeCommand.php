@@ -2,7 +2,6 @@
 
 namespace Cordoval\BernardBundle\Command;
 
-use Cordoval\BernardBundle\Message\CommandMessageHandler;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -36,8 +35,7 @@ class ConsumeCommand extends ContainerAwareCommand
 
             $queues = $this->getContainer()->get('bernard.queue_factory');
 
-            $processes = array();
-
+            $processes = [];
             foreach ($queues->all() as $name => $queue) {
                 $command = 'nohup php '. $kernel->getRootDir() .'/console ' . $this->getName() .
                     ' --env='. $kernel->getEnvironment() .' ' .

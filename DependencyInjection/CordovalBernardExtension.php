@@ -26,7 +26,7 @@ class CordovalBernardExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
 
@@ -36,7 +36,7 @@ class CordovalBernardExtension extends Extension
                 $connectionName = sprintf("doctrine.dbal.%s_connection", $config['dbal']);
 
                 $container->getDefinition('bernard.doctrine_driver')
-                    ->setArguments(array(new Reference($connectionName)));
+                    ->setArguments([new Reference($connectionName)]);
 
                 $container->setAlias('bernard.driver', 'bernard.doctrine_driver');
                 break;
@@ -44,11 +44,14 @@ class CordovalBernardExtension extends Extension
                 $sqs = new Definition('Aws\Sqs\SqsClient');
                 $sqs->setFactoryClass('Aws\Sqs\SqsClient');
                 $sqs->setFactoryMethod('factory');
-                $sqs->setArguments(array(array(
-                    'key'      => $config['sqs']['key'],
-                    'secret'   => $config['sqs']['secret'],
-                    'region'   => $config['sqs']['region'],
-                )));
+                $sqs->setArguments([
+                        [
+                            'key'      => $config['sqs']['key'],
+                            'secret'   => $config['sqs']['secret'],
+                            'region'   => $config['sqs']['region'],
+                        ]
+                    ]
+                );
 
                 $container->setDefinition('bernard.sqs', $sqs);
 
@@ -56,8 +59,8 @@ class CordovalBernardExtension extends Extension
                 break;
             case 'redis':
                 $redis = new Definition('Redis');
-                $redis->addMethodCall('connect', array($config['redis']['host'], $config['redis']['port']));
-                $redis->addMethodCall('setOption', array(2, 'bernard:'));
+                $redis->addMethodCall('connect', [$config['redis']['host'], $config['redis']['port']]);
+                $redis->addMethodCall('setOption', [2, 'bernard:']);
 
                 $container->setDefinition('bernard.redis', $redis);
 
@@ -65,12 +68,13 @@ class CordovalBernardExtension extends Extension
                 break;
             case 'predis':
                 $predis = new Definition('Predis\Client');
-                $predis->setArguments(array(
-                    $config['predis']['dsn'],
-                    array(
-                        'prefix' => 'bernard:',
-                    )
-                ));
+                $predis->setArguments([
+                        $config['predis']['dsn'],
+                        [
+                            'prefix' => 'bernard:',
+                        ]
+                    ]
+                );
 
                 $container->setDefinition('bernard.predis', $predis);
 
@@ -78,10 +82,13 @@ class CordovalBernardExtension extends Extension
                 break;
             case 'ironmq':
                 $ironmq = new Definition('IronMQ');
-                $ironmq->setArguments(array(array(
-                    'token'      => $config['ironmq']['token'],
-                    'project_id' => $config['ironmq']['project_id'],
-                )));
+                $ironmq->setArguments([
+                        [
+                            'token'      => $config['ironmq']['token'],
+                            'project_id' => $config['ironmq']['project_id'],
+                        ]
+                    ]
+                );
 
                 $container->setDefinition('bernard.ironmq', $ironmq);
 
