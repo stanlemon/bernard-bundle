@@ -2,11 +2,11 @@
 
 namespace Cordoval\BernardBundle\Message;
 
-use Symfony\Component\Console\Output\ConsoleOutput;
-use Symfony\Component\Console\Input\StringInput;
-use Symfony\Component\Console\Input\ArgvInput;
 use Bernard\Message\DefaultMessage;
 
+/**
+ * Inspired from https://github.com/stanlemon/bernard-app
+ */
 class EchoMessageHandler
 {
     public function echoMessageHandler(DefaultMessage $message)

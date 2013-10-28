@@ -17,9 +17,9 @@ cordoval_bernard:
 #    redis:
 #        host:
 #        port:
-    ironmq:
-        token:
-        project:
+#    ironmq:
+#        token:
+#        project:
 #    sqs:
 #        key:
 #        secret:

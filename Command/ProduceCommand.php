@@ -19,6 +19,9 @@ use Bernard\Serializer\SimpleSerializer;
 use Bernard\Driver\DoctrineDriver;
 use Doctrine\DBAL\DriverManager;
 
+/**
+ * Inspired from https://github.com/stanlemon/bernard-app
+ */
 class ProduceCommand extends ContainerAwareCommand
 {
     protected function configure()

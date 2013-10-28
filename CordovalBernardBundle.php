@@ -7,6 +7,9 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Cordoval\BernardBundle\DependencyInjection\Compiler\MessageServiceCompilerPass;
 use Cordoval\BernardBundle\DependencyInjection\Compiler\ServiceSetupCompilerPass;
 
+/**
+ * Inspired from https://github.com/stanlemon/bernard-app
+ */
 class CordovalBernardBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
