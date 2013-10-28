@@ -28,7 +28,7 @@ class ProduceCommand extends ContainerAwareCommand
     /**
      * {@inheritDoc}
      */
-    public function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
         $name = $input->getArgument('name');
         $message = json_decode($input->getArgument('message'), true) ?: array();
