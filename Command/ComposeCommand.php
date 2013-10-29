@@ -27,7 +27,7 @@ class ComposeCommand extends ContainerAwareCommand
             ->get('bernard.producer')
             ->produce(new DefaultMessage(
                     'CommandMessageHandler',
-                    ['command' => $argv]
+                    array('command' => $argv)
                 )
             )
         ;

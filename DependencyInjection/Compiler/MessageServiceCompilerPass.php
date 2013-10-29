@@ -12,7 +12,7 @@ class MessageServiceCompilerPass implements CompilerPassInterface
         $definition = $container->getDefinition('bernard.router');
         $taggedServices = $container->findTaggedServiceIds('bernard.receiver');
 
-        $receivers = [];
+        $receivers = array();
         foreach ($taggedServices as $id => $attributes) {
             $service = $container->getDefinition($id);
 

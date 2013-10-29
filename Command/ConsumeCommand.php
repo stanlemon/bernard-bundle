@@ -30,7 +30,7 @@ class ConsumeCommand extends ContainerAwareCommand
             $kernel = $this->getContainer()->get('kernel');
             $queues = $this->getContainer()->get('bernard.queue_factory');
 
-            $processes = [];
+            $processes = array();
             foreach ($queues->all() as $name => $queue) {
                 $command = 'nohup php '. $kernel->getRootDir() .'/console ' . $this->getName() .
                     ' --env='. $kernel->getEnvironment() .' ' .

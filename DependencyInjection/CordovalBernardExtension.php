@@ -33,7 +33,7 @@ class BernardBernardExtension extends Extension
                 $connectionName = sprintf("doctrine.dbal.%s_connection", $config['dbal']);
 
                 $container->getDefinition('bernard.doctrine_driver')
-                    ->setArguments([new Reference($connectionName)])
+                    ->setArguments(array(new Reference($connectionName)))
                 ;
 
                 $container->setAlias('bernard.driver', 'bernard.doctrine_driver');
@@ -42,13 +42,13 @@ class BernardBernardExtension extends Extension
                 $sqs = new Definition('Aws\Sqs\SqsClient');
                 $sqs->setFactoryClass('Aws\Sqs\SqsClient');
                 $sqs->setFactoryMethod('factory');
-                $sqs->setArguments([
-                        [
+                $sqs->setArguments(array(
+                        array(
                             'key'      => $config['sqs']['key'],
                             'secret'   => $config['sqs']['secret'],
                             'region'   => $config['sqs']['region'],
-                        ]
-                    ]
+                        )
+                    )
                 );
 
                 $container->setDefinition('bernard.sqs', $sqs);
@@ -58,7 +58,7 @@ class BernardBernardExtension extends Extension
             case 'redis':
                 $redis = new Definition('Redis');
                 $redis->addMethodCall('connect', [$config['redis']['host'], $config['redis']['port']]);
-                $redis->addMethodCall('setOption', [2, 'bernard:']);
+                $redis->addMethodCall('setOption', array(2, 'bernard:'));
 
                 $container->setDefinition('bernard.redis', $redis);
 
@@ -66,12 +66,12 @@ class BernardBernardExtension extends Extension
                 break;
             case 'predis':
                 $predis = new Definition('Predis\Client');
-                $predis->setArguments([
+                $predis->setArguments(array(
                         $config['predis']['dsn'],
-                        [
+                        array(
                             'prefix' => 'bernard:',
-                        ]
-                    ]
+                        )
+                    )
                 );
 
                 $container->setDefinition('bernard.predis', $predis);
@@ -80,12 +80,12 @@ class BernardBernardExtension extends Extension
                 break;
             case 'ironmq':
                 $ironmq = new Definition('IronMQ');
-                $ironmq->setArguments([
-                        [
+                $ironmq->setArguments(array(
+                        array(
                             'token'      => $config['ironmq']['token'],
                             'project_id' => $config['ironmq']['project_id'],
-                        ]
-                    ]
+                        )
+                    )
                 );
 
                 $container->setDefinition('bernard.ironmq', $ironmq);
