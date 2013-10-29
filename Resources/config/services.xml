@@ -72,7 +72,11 @@
         <service id="bernard.consumer_middleware" class="%bernard.consumer_middleware.class%">
             <call method="push">
                 <argument type="service" id="bernard.consumer_middleware.error_log"/>
+            </call>
+            <call method="push">
                 <argument type="service" id="bernard.consumer_middleware.failures"/>
+            </call>
+            <call method="push">
                 <argument type="service" id="bernard.consumer_middleware.logger"/>
             </call>
         </service>
