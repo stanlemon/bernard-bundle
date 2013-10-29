@@ -26,13 +26,11 @@ class ConsumeCommand extends ContainerAwareCommand
     {
         if ($input->getArgument('queue')) {
             $consumer = $this->getContainer()->get('bernard.consumer');
-
             $queues = $this->getContainer()->get('bernard.queue_factory');
 
             $consumer->consume($queues->create($input->getArgument('queue')));
         } else {
             $kernel = $this->getContainer()->get('kernel');
-
             $queues = $this->getContainer()->get('bernard.queue_factory');
 
             $processes = [];
