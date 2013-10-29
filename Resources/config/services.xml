@@ -30,6 +30,12 @@
     </parameters>
     <services>
         <service id="bernard.cordoval.command_message_handler" class="%bernard.cordoval.command_message_handler.class%">
+            <call method="setKernel">
+                <argument type="service" id="kernel"/>
+            </call>
+            <call method="setLogger">
+                <argument type="service" id="logger"/>
+            </call>
             <tag name="bernard.receiver"/>
         </service>
         <service id="bernard.cordoval.echo_message_handler" class="%bernard.cordoval.echo_message_handler.class%">
