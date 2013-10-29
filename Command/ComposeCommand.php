@@ -7,9 +7,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Bernard\Message\DefaultMessage;
 
-/**
- * Inspired from https://github.com/stanlemon/bernard-app
- */
 class ComposeCommand extends ContainerAwareCommand
 {
     protected function configure()

@@ -9,9 +9,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Bernard\Message;
 use Bernard\Message\DefaultMessage;
 
-/**
- * Inspired from https://github.com/stanlemon/bernard-app
- */
 class ProduceCommand extends ContainerAwareCommand
 {
     protected function configure()

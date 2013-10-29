@@ -8,9 +8,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 
-/**
- * Inspired from https://github.com/stanlemon/bernard-app
- */
 class ConsumeCommand extends ContainerAwareCommand
 {
     protected function configure()

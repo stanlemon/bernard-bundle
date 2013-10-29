@@ -8,9 +8,6 @@ use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Input\ArgvInput;
 use Bernard\Message\DefaultMessage;
 
-/**
- * Inspired from https://github.com/stanlemon/bernard-app
- */
 class CommandMessageHandler
 {
     protected $kernel;

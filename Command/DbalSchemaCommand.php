@@ -9,9 +9,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Bernard\Doctrine\MessagesSchema;
 use Doctrine\DBAL\Schema\Schema;
 
-/**
- * Inspired from https://github.com/stanlemon/bernard-app
- */
 class DbalSchemaCommand extends ContainerAwareCommand
 {
     protected function configure()

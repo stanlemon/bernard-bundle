@@ -6,9 +6,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\Reference;
 
-/**
- * Inspired from https://github.com/stanlemon/bernard-app
- */
 class ServiceSetupCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)

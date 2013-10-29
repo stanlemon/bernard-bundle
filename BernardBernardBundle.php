@@ -7,9 +7,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Bernard\BernardBundle\DependencyInjection\Compiler\MessageServiceCompilerPass;
 use Bernard\BernardBundle\DependencyInjection\Compiler\ServiceSetupCompilerPass;
 
-/**
- * Inspired from https://github.com/stanlemon/bernard-app
- */
 class BernardBernardBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
