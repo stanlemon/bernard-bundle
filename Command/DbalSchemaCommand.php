@@ -28,7 +28,7 @@ class DbalSchemaCommand extends ContainerAwareCommand
     {
         $connection = $this->getContainer()->get('doctrine.dbal.default_connection');
 
-        $messagesSchema = MessagesSchema::create($schema = new Schema);
+        MessagesSchema::create($schema = new Schema);
 
         if ($input->getOption('drop')) {
             $sql = $schema->toDropSql($connection->getDatabasePlatform());
