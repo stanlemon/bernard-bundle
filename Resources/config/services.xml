@@ -69,7 +69,13 @@
         <service id="bernard.doctrine_driver" class="%bernard.doctrine_driver.class%">
             <argument type="service" id="doctrine.dbal.default_connection"/>
         </service>
-        <service id="bernard.consumer_middleware" class="%bernard.consumer_middleware.class%"/>
+        <service id="bernard.consumer_middleware" class="%bernard.consumer_middleware.class%">
+            <call method="push">
+                <argument type="service" id="bernard.consumer_middleware.error_log"/>
+                <argument type="service" id="bernard.consumer_middleware.failures"/>
+                <argument type="service" id="bernard.consumer_middleware.logger"/>
+            </call>
+        </service>
         <service id="bernard.consumer_middleware.error_log" class="%bernard.consumer_middleware.error_log.class%"/>
         <service id="bernard.consumer_middleware.failures" class="%bernard.consumer_middleware.failures.class%">
             <argument type="service" id="bernard.queue_factory"/>
@@ -89,7 +95,6 @@
             </argument>
             <argument type="service" key="json" id="bernard.symfony_serializer.encoder.json"/>
         </service>
-
         <service id="bernard.symfony_serializer.default_message.normalizer" class="%bernard.symfony_serializer.default_message.normalizer.class%"/>
         <service id="bernard.symfony_serializer.envelope.normalizer" class="%bernard.symfony_serializer.envelope.normalizer.class%"/>
         <service id="bernard.symfony_serializer.encoder.json" class="%bernard.symfony_serializer.encoder.json.class%"/>
