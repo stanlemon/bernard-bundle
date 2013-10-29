@@ -35,3 +35,7 @@ php app/console bernard:dbal-schema --force
 CREATE TABLE bernard_queues (name VARCHAR(255) NOT NULL, ...
 CREATE TABLE bernard_messages (id INT UNSIGNED AUTO_INCREMENT NOT NULL, ...
 ```
+
+##License
+
+All code is licensed MIT. See LICENSE file on root directory.
