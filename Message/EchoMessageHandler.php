@@ -1,6 +1,6 @@
 <?php
 
-namespace Cordoval\BernardBundle\Message;
+namespace Bernard\BernardBundle\Message;
 
 use Bernard\Message\DefaultMessage;
 

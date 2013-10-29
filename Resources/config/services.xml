@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
-        <parameter key="bernard.cordoval.command_message_handler.class">Cordoval\BernardBundle\Message\CommandMessageHandler</parameter>
-        <parameter key="bernard.cordoval.echo_message_handler.class">Cordoval\BernardBundle\Message\EchoMessageHandler</parameter>
+        <parameter key="bernard.bundle.command_message_handler.class">Bernard\BernardBundle\Message\CommandMessageHandler</parameter>
+        <parameter key="bernard.bundle.echo_message_handler.class">Bernard\BernardBundle\Message\EchoMessageHandler</parameter>
         <parameter key="bernard.consumer.class">Bernard\Consumer</parameter>
         <parameter key="bernard.producer.class">Bernard\Producer</parameter>
         <parameter key="bernard.queue_factory.class">Bernard\QueueFactory\PersistentFactory</parameter>
@@ -29,7 +29,7 @@
         <parameter key="bernard.symfony_serializer.encoder.json.class">Symfony\Component\Serializer\Encoder\JsonEncoder</parameter>
     </parameters>
     <services>
-        <service id="bernard.cordoval.command_message_handler" class="%bernard.cordoval.command_message_handler.class%">
+        <service id="bernard.bundle.command_message_handler" class="%bernard.bundle.command_message_handler.class%">
             <call method="setKernel">
                 <argument type="service" id="kernel"/>
             </call>
@@ -38,7 +38,7 @@
             </call>
             <tag name="bernard.receiver"/>
         </service>
-        <service id="bernard.cordoval.echo_message_handler" class="%bernard.cordoval.echo_message_handler.class%">
+        <service id="bernard.bundle.echo_message_handler" class="%bernard.bundle.echo_message_handler.class%">
             <tag name="bernard.receiver"/>
         </service>
         <service id="bernard.consumer" class="%bernard.consumer.class%">

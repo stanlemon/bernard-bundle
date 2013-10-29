@@ -1,16 +1,16 @@
 <?php
 
-namespace Cordoval\BernardBundle;
+namespace Bernard\BernardBundle;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
-use Cordoval\BernardBundle\DependencyInjection\Compiler\MessageServiceCompilerPass;
-use Cordoval\BernardBundle\DependencyInjection\Compiler\ServiceSetupCompilerPass;
+use Bernard\BernardBundle\DependencyInjection\Compiler\MessageServiceCompilerPass;
+use Bernard\BernardBundle\DependencyInjection\Compiler\ServiceSetupCompilerPass;
 
 /**
  * Inspired from https://github.com/stanlemon/bernard-app
  */
-class CordovalBernardBundle extends Bundle
+class BernardBernardBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {

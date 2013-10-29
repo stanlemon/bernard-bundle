@@ -1,6 +1,6 @@
 <?php
 
-namespace Cordoval\BernardBundle\Command;
+namespace Bernard\BernardBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;

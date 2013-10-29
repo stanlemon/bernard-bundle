@@ -1,6 +1,6 @@
 <?php
 
-namespace Cordoval\BernardBundle\Message;
+namespace Bernard\BernardBundle\Message;
 
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Output\ConsoleOutput;

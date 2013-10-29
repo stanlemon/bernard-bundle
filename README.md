@@ -1,4 +1,4 @@
-CordovalBernardBundle
+BernardBernardBundle
 =====================
 
 bernardphp.com Symfony Bundle
@@ -10,13 +10,13 @@ https://github.com/stanlemon/bernard-app
 Add to your kernel:
 
 ```php
-new Cordoval\BernardBundle\CordovalBernardBundle(),
+new Bernard\BernardBundle\BernardBernardBundle(),
 ```
 
 Add to your config:
 
 ```yml
-cordoval_bernard:
+Bernard_bernard:
     driver: dbal
     serializer: simple
     dbal: default

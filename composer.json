@@ -1,9 +1,8 @@
 {
-    "name": "cordoval/bernard-bundle",
+    "name": "bernard/bernard-bundle",
     "type": "symfony-bundle",
     "description": "Symfony BernardBundle",
     "keywords": ["Queue processing"],
-    "homepage": "http://craftitonline.com",
     "license": "MIT",
     "authors": [
         {
@@ -11,8 +10,12 @@
             "email": "cordoval@gmail.com"
         },
         {
+            "name": "Stan Lemon",
+            "email": "stosh1985@gmail.com"
+        }
+        {
             "name": "Bernard Community",
-            "homepage": "https://github.com/cordoval/CordovalBernardBundle/contributors"
+            "homepage": "https://github.com/bernard/BernardBundle/contributors"
         }
     ],
     "minimum-stability": "dev",
@@ -31,7 +34,7 @@
         "predis/predis" : "only if redis enabled"
     },
     "autoload": {
-        "psr-0": { "Cordoval\\BernardBundle": "" }
+        "psr-0": { "Bernard\\BernardBundle": "" }
     },
-    "target-dir": "Cordoval/BernardBundle"
+    "target-dir": "Bernard/BernardBundle"
 }
