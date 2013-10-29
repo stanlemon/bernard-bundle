@@ -3,10 +3,6 @@ BernardBernardBundle
 
 bernardphp.com Symfony Bundle
 
-This bundle borrows some initial code from Stan Lemon's code:
-
-https://github.com/stanlemon/bernard-app
-
 Add to your kernel:
 
 ```php
