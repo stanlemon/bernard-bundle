@@ -1,18 +1,18 @@
-BernardBernardBundle
-=====================
+BernardBundle
+=============
 
 bernardphp.com Symfony Bundle
 
 Add to your kernel:
 
 ```php
-new Bernard\BernardBundle\BernardBernardBundle(),
+new Bernard\BernardBundle\BernardBundle(),
 ```
 
 Add to your config:
 
 ```yml
-Bernard_bernard:
+bernard:
     driver: dbal
     serializer: simple
     dbal: default
