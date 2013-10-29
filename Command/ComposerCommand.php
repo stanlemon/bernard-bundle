@@ -21,7 +21,7 @@ class ComposeCommand extends ContainerAwareCommand
         ;
     }
 
-    proteted function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
         // Removed the proxy command from the argv list
         $argv = array_slice($_SERVER['argv'], 0, 1) + array_slice($_SERVER['argv'], 1);
