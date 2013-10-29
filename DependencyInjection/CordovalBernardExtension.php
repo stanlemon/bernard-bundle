@@ -29,14 +29,14 @@ class CordovalBernardExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-
         // Configure driver
         switch ($config['driver']) {
             case 'dbal':
                 $connectionName = sprintf("doctrine.dbal.%s_connection", $config['dbal']);
 
                 $container->getDefinition('bernard.doctrine_driver')
-                    ->setArguments([new Reference($connectionName)]);
+                    ->setArguments([new Reference($connectionName)])
+                ;
 
                 $container->setAlias('bernard.driver', 'bernard.doctrine_driver');
                 break;

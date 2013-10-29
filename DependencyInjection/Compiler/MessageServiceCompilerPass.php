@@ -20,7 +20,7 @@ class MessageServiceCompilerPass implements CompilerPassInterface
             $service = $container->getDefinition($id);
 
             if (!class_exists($className = $service->getClass())) {
-                $className = $container->getParameterBag()->resolveValue($service->getClass());
+                $className = $container->getParameterBag()->resolveValue($className);
             }
 
             $reflection = new \ReflectionClass($className);
