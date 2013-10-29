@@ -8,7 +8,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Bernard\Message;
 use Bernard\Message\DefaultMessage;
-use Bernard\Middleware;
 
 /**
  * Inspired from https://github.com/stanlemon/bernard-app
