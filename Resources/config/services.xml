@@ -103,7 +103,9 @@
                 <argument type="service" id="bernard.symfony_serializer.default_message.normalizer"/>
                 <argument type="service" id="bernard.symfony_serializer.envelope.normalizer"/>
             </argument>
-            <argument type="service" key="json" id="bernard.symfony_serializer.encoder.json"/>
+            <argument type="collection">
+				<argument type="service" key="json" id="bernard.symfony_serializer.encoder.json"/>
+			</argument>
         </service>
         <service id="bernard.symfony_serializer.default_message.normalizer" class="%bernard.symfony_serializer.default_message.normalizer.class%"/>
         <service id="bernard.symfony_serializer.envelope.normalizer" class="%bernard.symfony_serializer.envelope.normalizer.class%"/>
