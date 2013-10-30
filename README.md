@@ -45,7 +45,7 @@ php app/console bernard:produce MessageType "{\"message\": \"Message here...\"}"
 
 Then consume the messages
 ```
-php app/console bernard:consume
+php app/console bernard:consume message-type
 ```
 
 To see the bundle in action with a sample message take a look at: https://github.com/stanlemon/bernard-bundle-app
