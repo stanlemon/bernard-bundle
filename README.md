@@ -28,12 +28,24 @@ bernard:
 #        region:
 ```
 
+By default no configuration is required and the bundle will assume the doctrine driver.
+
 Before using run the following command to set schema for Doctrine driver:
 
 ```
 php app/console bernard:dbal-schema --force
 CREATE TABLE bernard_queues (name VARCHAR(255) NOT NULL, ...
 CREATE TABLE bernard_messages (id INT UNSIGNED AUTO_INCREMENT NOT NULL, ...
+```
+
+To begin produce a message
+```
+php app/console bernard:produce MessageType "{\"message\": \"Message here...\"}"
+```
+
+Then consume the messages
+```
+php app/console bernard:consume
 ```
 
 ##License
