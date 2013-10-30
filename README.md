@@ -48,6 +48,8 @@ Then consume the messages
 php app/console bernard:consume
 ```
 
+To see the bundle in action with a sample message take a look at: https://github.com/stanlemon/bernard-bundle-app
+
 ##License
 
 All code is licensed MIT. See LICENSE file on root directory.
