@@ -69,7 +69,7 @@ accessed simply as normal properties `$message->property`.
 Let's take a look at another example, in this case we will use the `CommandMessageHandler`.
 
 ```
-php app/console bernard:produce CommandMessageHandler "{\"command\": \"list\"}"
+php app/console bernard:produce CommandMessageHandler "{\"command\": \"list --help\"}"
 ```
 
 The producer will create a queue called `command-message-handler` and pump the
@@ -77,8 +77,18 @@ message in that queue awaiting to be consumed.
 
 Let's consume the queue and run the command.
 ```
+php app/console bernard:consume command-message-handler
 ```
-To see the bundle in action with a sample message take a look at: https://github.com/stanlemon/bernard-bundle-app
+
+We can also issue the command without arguments to tell bernard to consume all registered handlers:
+```
+php app/console bernard:consume
+```
+Because CommandMessageHandler is registered via a compiler pass the consumer will loop
+over all registered services and execute the method corresponding to the correct queue.
+
+In your project you can create a handler, tag it as a handler and it will run
+its corresponding queue.
 
 ##License
 
