@@ -7,7 +7,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Bernard\BernardBundle\Message;
+namespace Bernard\BernardBundle\Handler;
 
 use Bernard\Message\DefaultMessage;
 
