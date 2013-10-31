@@ -90,6 +90,38 @@ over all registered services and execute the method corresponding to the correct
 In your project you can create a handler, tag it as a handler and it will run
 its corresponding queue.
 
+## InvokeCommandHandler
+
+The bundle comes with an InvokeCommandHandler that you can extend for your commands.
+In this way you are lessening your chances for typos on writing the name of
+the method execute on your command handler and also render it friendly for
+cases where you need to use them as interactors in a Entity Boundary Interactor context.
+
+Here is an example:
+```php
+<?php
+
+namespace Acme\DemoBundle\Updater;
+
+use Bernard\BernardBundle\Handler\InvokeMessageHandler;
+use Bernard\Message\DefaultMessage;
+
+class ApiUpdateMessageHandler extends InvokeMessageHandler
+{
+    protected $updater;
+
+    public function __construct(ApiUpdater $updater)
+    {
+        $this->updater = $updater;
+    }
+
+    public function __invoke(DefaultMessage $message)
+    {
+        $this->updater->update();
+    }
+}
+```
+
 ##License
 
 All code is licensed MIT. See LICENSE file on root directory.
