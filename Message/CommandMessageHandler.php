@@ -41,11 +41,9 @@ class CommandMessageHandler
 
         if (is_string($argv)) {
             $input = new StringInput($argv);
-            $name = trim(substr($argv, 0, strpos($argv, ' ')));
             $this->logger->info("Issuing... {$argv}");
         } else {
             $input = new ArgvInput($argv);
-            $name = current(array_slice($argv, 1));
             $this->logger->info("Issuing... " . ((string) $input));
         }
 
