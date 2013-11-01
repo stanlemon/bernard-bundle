@@ -122,6 +122,15 @@ class ApiUpdateMessageHandler extends InvokeMessageHandler
 }
 ```
 
+Finally you need to register the service with your service definition tagging
+it as a receiver as follows:
+```
+<service id="acme.demo.message_handler.api_update" class="Acme\DemoBundle\Updater\ApiUpdateMessageHandler">
+    <argument type="service" id="acme.demo.updater.api"/>
+    <tag name="bernard.receiver"/>
+</service>
+```
+
 ##License
 
 All code is licensed MIT. See LICENSE file on root directory.
