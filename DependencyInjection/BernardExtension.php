@@ -64,7 +64,7 @@ class BernardExtension extends Extension
                 break;
             case 'redis':
                 $redis = new Definition('Redis');
-                $redis->addMethodCall('connect', [$config['redis']['host'], $config['redis']['port']]);
+                $redis->addMethodCall('connect', array($config['redis']['host'], $config['redis']['port']));
                 $redis->addMethodCall('setOption', array(2, 'bernard:'));
 
                 $container->setDefinition('bernard.redis', $redis);
